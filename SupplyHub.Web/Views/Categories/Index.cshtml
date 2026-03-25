@@ -4,32 +4,70 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="container pb-3">
+    <h1>Categories</h1>
+</div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="container p-2 my-2">
+    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create")'">
+            New category
+    </button>
+</div>
+
+<div class="input-group mb-3">
+    <div class="input-group-prepend">
+        <span class="input-group-text" id="basic-addon1"><i class="fa fa-light fa-magnifying-glass fa-2x"></i></span>
+    </div>
+    <input type="text" id="categorySearch" class="form-control" placeholder="Search category..." aria-label="Search category" aria-describedby="basic-addon1" />
+</div>
+
+<div class="container pt-2 bg-light ">
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-end">
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div id="noResultsMessage" class="alert alert-warning mt-3" style="display: none;">
+    No categories found
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#categorySearch').on('keyup', function () {
+                var value = $(this).val().toLowerCase();
+                $('tbody tr').filter(function () {
+					var text = $(this).find("td:first").text().toLowerCase();
+                    $(this).toggle(text.indexOf(value) > -1)
+                });
+
+                if ($('tbody tr:visible').length === 0) {
+                    $("#noResultsMessage").show();
+                } else {
+                    $('#noResultsMessage').hide();
+                };
+            });
+        });
+    </script>
 }
-    </tbody>
-</table>
