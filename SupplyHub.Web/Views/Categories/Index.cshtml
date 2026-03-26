@@ -9,9 +9,7 @@
 </div>
 
 <div class="container p-2 my-2">
-    <button type="button" class="btn btn-outline-primary" onclick="location.href='@Url.Action("Create")'">
-            New category
-    </button>
+    <a asp-action="Create" class="btn btn-outline-primary">New category</a>
 </div>
 
 <div class="input-group mb-3">
@@ -40,7 +38,14 @@
                     <td class="text-end">
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <button class="btn btn-danger btn-sm delete-btn" 
+                                data-id="@item.Id"
+                                data-name="@item.Name"
+                                data-bs-toggle="modal"
+                                data-bs-target="#deleteModal">
+                            Delete
+                        </button>
+                        <!--<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>-->
                     </td>
                 </tr>
             }
@@ -50,6 +55,31 @@
 
 <div id="noResultsMessage" class="alert alert-warning mt-3" style="display: none;">
     No categories found
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Confirm Deletion</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <p id="deleteMessage"></p>
+            </div>
+
+            <div class="modal-footer">
+                <form id="deleteForm" asp-action="Delete">
+					<input type="hidden" name="id" id="deleteCategoryId" />
+                    <button type="submit" class="btn btn-danger">Delete</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 @section Scripts {
@@ -69,5 +99,16 @@
                 };
             });
         });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $('.delete-btn').on('click', function () {
+                var categoryId = $(this).data('id');
+                var categoryName = $(this).data('name');
+                $('#deleteMessage').text(`Are you sure you want to delete the category "${categoryName}"?`);
+				$('#deleteCategoryId').val(categoryId);
+            });
+		});
     </script>
 }
