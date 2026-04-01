@@ -1,12 +1,12 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = UiTexts.HomeTitle;
 }
 
 <div class="container">
     <div class="mb-4">
-        <h1 class="display-6 fw-semibold">SupplyHub</h1>
+        <h1 class="display-6 fw-semibold">@UiTexts.AppName</h1>
         <p class="text-muted mb-0">
-            Inventory and stock management demo built with ASP.NET Core MVC
+            @UiTexts.AppDescription
         </p>
     </div>
 
@@ -19,15 +19,17 @@
                     <div class="mb-3 text-primary fs-3">
 						<i class="fa-solid fa-tags"></i>
                     </div>
-                    <h5 class="card-title">Categories</h5>
-                    <p class="card-text text-muted flex-grow-1">Create and mantain product categories</p>
+                    <h5 class="card-title">@UiTexts.Categories</h5>
+                    <p class="card-text text-muted flex-grow-1">
+						@UiTexts.CategoriesCardDescription
+                    </p>
                     @* <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a asp-controller="Categories" asp-action="Index" class="btn btn-sm btn-outline-secondary">Go to categories</a>
                         </div>
                     </div> *@
                     <a asp-controller="Categories" asp-action="Index" class="btn btn-outline-primary">
-						Go to categories
+						@UiTexts.CategoriesCardButtonText
                     </a>
                 </div>
 		    </div>
@@ -39,12 +41,12 @@
                     <div class="mb-3 text-primary fs-3">
                         <i class="fa-solid fa-box"></i>
                     </div>
-                    <h5 class="card-title">Products</h5>
+                    <h5 class="card-title">@UiTexts.Products</h5>
                     <p class="card-text text-muted flex-grow-1">
-                        View and edit product information and stock.
+                        @UiTexts.ProductsCardDescription
                     </p>
                     <a asp-controller="Products" asp-action="Index" class="btn btn-outline-primary">
-                        Go to products
+						@UiTexts.ProductsCardButtonText
                     </a>
                 </div>
             </div>
@@ -57,12 +59,12 @@
                     <div class="mb-3 text-primary fs-3">
                         <i class="fa-solid fa-truck"></i>
                     </div>
-                    <h5 class="card-title">Suppliers</h5>
+                    <h5 class="card-title">@UiTexts.Providers</h5>
                     <p class="card-text text-muted flex-grow-1">
-                        Store and update supplier contact information.
+						@UiTexts.ProvidersCardDescription
                     </p>
-                    <a asp-controller="Suppliers" asp-action="Index" class="btn btn-outline-primary">
-                        Go to suppliers
+                    <a asp-controller="Providers" asp-action="Index" class="btn btn-outline-primary">
+						@UiTexts.ProvidersCardButtonText
                     </a>
                 </div>
             </div>
@@ -74,12 +76,12 @@
                     <div class="mb-3 text-primary fs-3">
                         <i class="fa-solid fa-arrow-right-arrow-left"></i>
                     </div>
-                    <h5 class="card-title">Stock Movements</h5>
+                    <h5 class="card-title">@UiTexts.StockMovements</h5>
                     <p class="card-text text-muted flex-grow-1">
-                        Track incoming and outgoing stock movements.
+                        @UiTexts.StockMovementsCardDescription
                     </p>
                     <a asp-controller="StockMovements" asp-action="Index" class="btn btn-outline-primary">
-                        Go to movements
+						@UiTexts.StockMovementsCardButtonText
                     </a>
                 </div>
             </div>

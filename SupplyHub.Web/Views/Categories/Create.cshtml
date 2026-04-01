@@ -1,12 +1,12 @@
 ﻿@model SupplyHub.Web.Models.Category
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = UiTexts.CreateCategory;
 }
 
-<h1>New category</h1>
+<h1>@UiTexts.NewCategory</h1>
 
-<h4>Category</h4>
+<h4>@UiTexts.Category</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -25,7 +25,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@UiTexts.BackToList</a>
 </div>
 
 @section Scripts {
