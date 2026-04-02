@@ -1,3 +1,5 @@
+using System.Globalization;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Web.Data;
 
@@ -18,6 +20,17 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+var cultureInfo = new CultureInfo("en-US");
+
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(cultureInfo),
+    SupportedCultures = new List<CultureInfo> { cultureInfo },
+    SupportedUICultures = new List<CultureInfo> { cultureInfo }
+};
+
+app.UseRequestLocalization(localizationOptions);
 
 app.UseHttpsRedirection();
 app.UseRouting();
