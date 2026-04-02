@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SupplyHub.Web.Data;
 using SupplyHub.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace SupplyHub.Web.Controllers
 {
@@ -61,6 +62,7 @@ namespace SupplyHub.Web.Controllers
         {
             if (ModelState.IsValid)
             {
+                Console.WriteLine("Model state is valid. Adding product to database.");
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

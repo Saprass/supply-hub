@@ -36,6 +36,8 @@ public static class UiTexts
     public const string NewProduct = "New product";
     public const string ProductsCardDescription = "View and edit product information and stock";
     public const string ProductsCardButtonText = "Go to products";
+    public const string SearchProductPlaceholder = "Search product...";
+    public const string NoProductsFound = "No products found";
 
     // Providers
     public const string Providers = "Providers";
