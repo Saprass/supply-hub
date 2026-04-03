@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace SupplyHub.Web.Models;
 
@@ -21,5 +22,12 @@ public class Product
     [Range(0, int.MaxValue)]
     public int StockQuantity { get; set; }
     public int CategoryId { get; set; }
-    public Category? Category { get; set; }
+
+    [ValidateNever]
+    public Category Category { get; set; } = null!;
+
+    public int? SupplierId { get; set; }
+
+    [ValidateNever]
+    public Supplier Supplier { get; set; } = null!;
 }

@@ -13,6 +13,8 @@ public class ApplicationDbContext : DbContext
 
     public DbSet<Product> Products => Set<Product>();
 
+    public DbSet<Supplier> Suppliers => Set<Supplier>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -26,5 +28,11 @@ public class ApplicationDbContext : DbContext
         modelBuilder.Entity<Product>()
             .Property(p => p.Price)
             .HasPrecision(18, 2);
+
+        modelBuilder.Entity<Product>()
+            .HasOne(p => p.Supplier)
+            .WithMany(s => s.Products)
+            .HasForeignKey(p => p.SupplierId)
+            .OnDelete(DeleteBehavior.Restrict);
     }
 }
