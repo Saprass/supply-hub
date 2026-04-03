@@ -23,7 +23,9 @@ namespace SupplyHub.Web.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Products.Include(p => p.Category);
+            var applicationDbContext = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.Supplier);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -37,6 +39,7 @@ namespace SupplyHub.Web.Controllers
 
             var product = await _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Supplier)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
@@ -50,6 +53,7 @@ namespace SupplyHub.Web.Controllers
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name");
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name");
             return View();
         }
 
@@ -58,16 +62,16 @@ namespace SupplyHub.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,SKU,Description,Price,StockQuantity,CategoryId")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Name,SKU,Description,Price,StockQuantity,CategoryId,SupplierId")] Product product)
         {
             if (ModelState.IsValid)
             {
-                Console.WriteLine("Model state is valid. Adding product to database.");
                 _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name", product.SupplierId);
             return View(product);
         }
 
@@ -85,6 +89,7 @@ namespace SupplyHub.Web.Controllers
                 return NotFound();
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name", product.SupplierId);
             return View(product);
         }
 
@@ -121,6 +126,7 @@ namespace SupplyHub.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+            ViewData["SupplierId"] = new SelectList(_context.Suppliers, "Id", "Name", product.SupplierId);
             return View(product);
         }
 
@@ -134,6 +140,7 @@ namespace SupplyHub.Web.Controllers
 
             var product = await _context.Products
                 .Include(p => p.Category)
+                .Include(p => p.Supplier)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (product == null)
             {
