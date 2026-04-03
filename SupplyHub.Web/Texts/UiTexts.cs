@@ -39,13 +39,13 @@ public static class UiTexts
     public const string SearchProductPlaceholder = "Search product...";
     public const string NoProductsFound = "No products found";
 
-    // Providers
-    public const string Providers = "Providers";
-    public const string Provider = "Provider";
-    public const string CreateProvider = "Create Provider";
-    public const string NewProvider = "New provider";
-    public const string ProvidersCardDescription = "Store and update supplier contact information";
-    public const string ProvidersCardButtonText = "Go to providers";
+    // Suppliers
+    public const string Suppliers = "Suppliers";
+    public const string Supplier = "Supplier";
+    public const string CreateSupplier = "Create Supplier";
+    public const string NewSupplier = "New supplier";
+    public const string SuppliersCardDescription = "Store and update supplier contact information";
+    public const string SuppliersCardButtonText = "Go to suppliers";
 
     // Stock Movements
     public const string StockMovements = "Stock Movements";
