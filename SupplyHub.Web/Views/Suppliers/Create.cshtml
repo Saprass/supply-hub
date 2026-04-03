@@ -1,12 +1,12 @@
 ﻿@model SupplyHub.Web.Models.Supplier
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = UiTexts.CreateSupplier;
 }
 
-<h1>Create</h1>
+<h1>@UiTexts.NewSupplier</h1>
 
-<h4>Supplier</h4>
+<h4>@UiTexts.Supplier</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -35,7 +35,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">@UiTexts.BackToList</a>
 </div>
 
 @section Scripts {

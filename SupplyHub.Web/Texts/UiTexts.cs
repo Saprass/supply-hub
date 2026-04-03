@@ -46,6 +46,8 @@ public static class UiTexts
     public const string NewSupplier = "New supplier";
     public const string SuppliersCardDescription = "Store and update supplier contact information";
     public const string SuppliersCardButtonText = "Go to suppliers";
+    public const string SearchSupplierPlaceholder = "Search supplier...";
+    public const string NoSuppliersFound = "No suppliers found";
 
     // Stock Movements
     public const string StockMovements = "Stock Movements";
